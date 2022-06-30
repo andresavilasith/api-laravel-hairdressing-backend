@@ -10,4 +10,9 @@ class Client extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    public function dates()
+    {
+        return $this->hasMany(Date::class);
+    }
 }

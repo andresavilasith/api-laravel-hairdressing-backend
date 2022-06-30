@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Attention extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
+
+    public function dates()
+    {
+        return $this->belongsToMany(Date::class)->withTimestamps();
+    }
 }
