@@ -14,7 +14,12 @@ class DateController extends Controller
      */
     public function index()
     {
-        //
+        $dates = Date::paginate(5);
+
+        return response()->json([
+            'dates' => $dates,
+            'status'=>'success'
+        ]);
     }
 
     /**
@@ -24,7 +29,9 @@ class DateController extends Controller
      */
     public function create()
     {
-        //
+        return response()->json([
+            'status' => 'success'
+        ]);
     }
 
     /**
@@ -35,7 +42,13 @@ class DateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $date = Date::create($request->all());
+
+        return response()->json([
+            'date' => $date,
+            'status' => 'success',
+            'message' => 'Date successfully stored'
+        ]);
     }
 
     /**
@@ -46,7 +59,10 @@ class DateController extends Controller
      */
     public function show(Date $date)
     {
-        //
+        return response()->json([
+            'date' => $date,
+            'status' => 'success',
+        ]);
     }
 
     /**
@@ -57,7 +73,10 @@ class DateController extends Controller
      */
     public function edit(Date $date)
     {
-        //
+        return response()->json([
+            'date' => $date,
+            'status' => 'success'
+        ]);
     }
 
     /**
@@ -69,7 +88,13 @@ class DateController extends Controller
      */
     public function update(Request $request, Date $date)
     {
-        //
+        $date->update($request->all());
+
+        return response()->json([
+            'date' => $date,
+            'status' => 'success',
+            'message' => 'Date successfully updated'
+        ]);
     }
 
     /**
@@ -80,6 +105,14 @@ class DateController extends Controller
      */
     public function destroy(Date $date)
     {
-        //
+        $date->delete();
+
+        $dates = Date::paginate(5);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Date successfully remove',
+            'dates' => $dates,
+        ]);
     }
 }

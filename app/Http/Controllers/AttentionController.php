@@ -14,7 +14,12 @@ class AttentionController extends Controller
      */
     public function index()
     {
-        //
+        $attentions = Attention::paginate(5);
+
+        return response()->json([
+            'attentions' => $attentions,
+            'status' => 'success'
+        ]);
     }
 
     /**
@@ -24,7 +29,9 @@ class AttentionController extends Controller
      */
     public function create()
     {
-        //
+        return response()->json([
+            'status' => 'success'
+        ]);
     }
 
     /**
@@ -35,7 +42,13 @@ class AttentionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attention = Attention::create($request->all());
+
+        return response()->json([
+            'attention' => $attention,
+            'status' => 'success',
+            'message' => 'Attention successfully stored'
+        ]);
     }
 
     /**
@@ -46,7 +59,10 @@ class AttentionController extends Controller
      */
     public function show(Attention $attention)
     {
-        //
+        return response()->json([
+            'attention' => $attention,
+            'status' => 'success',
+        ]);
     }
 
     /**
@@ -57,7 +73,10 @@ class AttentionController extends Controller
      */
     public function edit(Attention $attention)
     {
-        //
+        return response()->json([
+            'attention' => $attention,
+            'status' => 'success'
+        ]);
     }
 
     /**
@@ -69,7 +88,13 @@ class AttentionController extends Controller
      */
     public function update(Request $request, Attention $attention)
     {
-        //
+        $attention->update($request->all());
+
+        return response()->json([
+            'attention' => $attention,
+            'status' => 'success',
+            'message' => 'Attention successfully updated'
+        ]);
     }
 
     /**
@@ -80,6 +105,14 @@ class AttentionController extends Controller
      */
     public function destroy(Attention $attention)
     {
-        //
+        $attention->delete();
+
+        $attentions = Attention::paginate(5);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Attention successfully remove',
+            'attentions' => $attentions,
+        ]);
     }
 }

@@ -20,7 +20,7 @@ class DateFactory extends Factory
         return [
             'client_id' => Client::factory(),
             'name' => $this->faker->name,
-            'date' => $this->faker->date,
+            'reserved_date' => $this->faker->date,
         ];
     }
 }
