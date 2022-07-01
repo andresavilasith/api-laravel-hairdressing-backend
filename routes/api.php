@@ -18,7 +18,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('clients/dates', [ClientController::class, 'clients_with_dates_and_attentions']);
+Route::get('clients/dates', [ClientController::class, 'clients_with_dates']);
+Route::get('clients/dates/attentions', [ClientController::class, 'dates_with_attentions']);
 Route::resource('client', ClientController::class)->names('client');
 Route::resource('date', DateController::class)->names('date');
 Route::resource('attention', AttentionController::class)->names('attention');

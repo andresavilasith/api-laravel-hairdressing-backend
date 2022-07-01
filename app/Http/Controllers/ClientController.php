@@ -118,13 +118,23 @@ class ClientController extends Controller
         ]);
     }
 
-    public function clients_with_dates_and_attentions()
+    public function clients_with_dates()
     {
         $clients_with_dates = Client::with('dates')->get();
       
 
         return response()->json([
             'clients_with_dates' => $clients_with_dates,
+            'status' => 'success'
+        ]);
+    }
+    public function dates_with_attentions()
+    {
+        $dates_with_attentions = Date::with('attentions')->get();
+      
+
+        return response()->json([
+            'dates_with_attentions' => $dates_with_attentions,
             'status' => 'success'
         ]);
     }
