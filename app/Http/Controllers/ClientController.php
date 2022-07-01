@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Attention;
 use App\Models\Client;
+use App\Models\Date;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -113,6 +115,17 @@ class ClientController extends Controller
             'status' => 'success',
             'message' => 'Client successfully remove',
             'clients' => $clients,
+        ]);
+    }
+
+    public function clients_with_dates_and_attentions()
+    {
+        $clients_with_dates = Client::with('dates')->get();
+      
+
+        return response()->json([
+            'clients_with_dates' => $clients_with_dates,
+            'status' => 'success'
         ]);
     }
 }

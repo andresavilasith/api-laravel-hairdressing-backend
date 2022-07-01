@@ -13,12 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('date_attention', function (Blueprint $table) {
+        Schema::create('attention_date', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('date_id');
             $table->foreign('date_id')->references('id')->on('dates')->onDelete('cascade');
             $table->unsignedBigInteger('attention_id');
             $table->foreign('attention_id')->references('id')->on('attentions')->onDelete('cascade');
+            $table->integer('tackled')->default(0);
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('date_attention');
+        Schema::dropIfExists('attention_date');
     }
 };

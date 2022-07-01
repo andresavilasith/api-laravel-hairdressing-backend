@@ -11,8 +11,8 @@ class Attention extends Model
 
     protected $guarded = [];
 
-    public function dates()
+    public function date()
     {
-        return $this->belongsToMany(Date::class)->withTimestamps();
+        return $this->belongsToMany(Date::class)->withPivot('tackled')->withTimestamps();
     }
 }

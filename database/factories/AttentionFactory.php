@@ -18,7 +18,6 @@ class AttentionFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            'tackled' => $this->faker->randomElement([0, 1]),
         ];
     }
 }

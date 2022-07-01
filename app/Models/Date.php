@@ -18,6 +18,6 @@ class Date extends Model
 
     public function attentions()
     {
-        return $this->belongsToMany(Attention::class)->withTimestamps();
+        return $this->belongsToMany(Attention::class)->withPivot('tackled')->withTimestamps();
     }
 }
