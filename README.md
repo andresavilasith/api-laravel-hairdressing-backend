@@ -2,7 +2,7 @@
 
 
 
-# API Rest sobre una Peluqueria en Laravel con TDD
+# API Rest sobre una Peluqueria en Laravel
 
 ## Instalación
 
