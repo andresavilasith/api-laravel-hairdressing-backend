@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign('date_id')->references('id')->on('dates')->onDelete('cascade');
             $table->unsignedBigInteger('attention_id');
             $table->foreign('attention_id')->references('id')->on('attentions')->onDelete('cascade');
-            $table->integer('tackled')->default(0);
+            $table->string('tackled')->default(0);
             $table->timestamps();
         });
     }

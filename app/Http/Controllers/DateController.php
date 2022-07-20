@@ -42,10 +42,9 @@ class DateController extends Controller
      */
     public function store(Request $request)
     {
-
-        dd($request->get('attentions'));
-        $date = Date::create($request->all());
-
+        
+        //$cars_together = implode(", ", $request->attentions);
+        $date = Date::create($request->except(['attentions']));
         if ($request->get('attentions')) {
             $date->attentions()->sync($request->get('attentions'));
         }
@@ -94,13 +93,19 @@ class DateController extends Controller
      */
     public function update(Request $request, Date $date)
     {
+
+        $date->client_id = $request->client_id;
+        $date->name = $request->name;
+        $date->reserved_date = $request->reserved_date;
         $attentions = $request->get('attentions');
         $tackleds = $request->get('tackleds');
         $tackledToSave = [];
         $counter = 0;
 
+        $date->update();
+
         foreach ($attentions as $value) {
-            $tackledToSave[$value] =  ['tackled'=>$tackleds[$counter]];
+            $tackledToSave[$value] =  ['tackled' => $tackleds[$counter]];
             $counter++;
         }
 
@@ -110,8 +115,10 @@ class DateController extends Controller
         }
 
 
+
+
         return response()->json([
-            'date'=>$date,
+            'date' => $date,
             'status' => 'success',
             'message' => 'Date successfully updated'
         ]);
@@ -135,6 +142,4 @@ class DateController extends Controller
             'dates' => $dates,
         ]);
     }
-
-    
 }
