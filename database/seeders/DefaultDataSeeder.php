@@ -48,19 +48,21 @@ class DefaultDataSeeder extends Seeder
             'reserved_date' => '2022-06-15',
         ]);
 
-        Date::create([
+        $date2 = Date::create([
             'client_id' => 2,
             'name' => 'Segunda cita',
             'reserved_date' => '2022-06-20',
         ]);
 
         $attention_all = [];
+        $attention_all2 = [];
 
         $attention = Attention::create([
             'name' => 'Corte de pelo',
         ]);
 
         $attention_all[] = $attention->id;
+        $attention_all2[] = $attention->id;
 
         $attention = Attention::create([
             'name' => 'Manicure',
@@ -71,11 +73,12 @@ class DefaultDataSeeder extends Seeder
             'name' => 'Pedicuref',
         ]);
 
-        
+
 
         $attention_all[] = $attention->id;
-        
+
 
         $date1->attentions()->sync($attention_all);
+        $date2->attentions()->sync($attention_all2);
     }
 }
